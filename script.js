@@ -97,8 +97,8 @@ function calculate() {
     const perDayNeeded = BENCHMARK / days;
     const reachDate = new Date(birth.getTime() + (BENCHMARK / PER_DAY) * MS_PER_DAY);
     yearsLabel.textContent = `≈ ${Math.round(yearsToGo).toLocaleString('en-US')} more years to go`;
-    aboveBar.innerHTML = `That is about <strong>${fmtPct(pct)}</strong> of $1 trillion, ` +
-      `which means that, even at $10 million per day, it will still take you until <strong>${reachDate.getFullYear()}</strong> to become a trillionaire.`;
+    aboveBar.innerHTML = `That is about <strong>${fmtPct(pct)}</strong> of $1 trillion. ` +
+      `Even at $10 million per day, it will take you until <strong>${reachDate.getFullYear()}</strong> to become a trillionaire.`;
       const others = Math.round(BENCHMARK / total) - 1;
     peoplePara.innerHTML = `It would have taken you and ` +
       `<strong>${others.toLocaleString('en-US')} other people</strong> born on ${dob.value} ` +
