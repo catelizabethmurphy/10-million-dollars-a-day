@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How much is $1 trillion?</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="article">
+    <div class="kicker">How much is $1 trillion?</div>
+    <h1>Ten million dollars a day, every day you've been alive</h1>
+    <p class="standfirst">Enter your date of birth and find out how close a lifetime of eight-figure days would get you to $1&nbsp;trillion.</p>
+
+    <div class="prompt">
+      <label for="dob">Your date of birth</label>
+      <div class="field-row">
+        <input type="text" id="dob" placeholder="MM/DD/YYYY" inputmode="numeric" autocomplete="off" maxlength="10">
+        <button id="calcBtn">Go</button>
+      </div>
+      <div class="error" id="error"></div>
+    </div>
+
+    <div class="results" id="results">
+      <div class="figure">
+        <div class="amount" id="totalAmount">$0</div>
+        <div class="caption" id="daysCaption">earned over 0 years</div>
+      </div>
+
+      <div class="body-text">
+        <p id="leadPara"></p>
+        <p id="aboveBar"></p>
+      </div>
+
+      <div class="bar-wrap">
+        <div class="bar-label">
+          <span class="pct" id="pctVal">$0</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="barFill"></div>
+          <span class="bar-remaining" id="yearsToGo"></span>
+        </div>
+      </div>
+
+      <div class="body-text">
+        <p id="peoplePara"></p>
+        <p id="contextPara"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
