@@ -91,7 +91,6 @@ function calculate() {
   if (total >= BENCHMARK) {
     yearsLabel.textContent = '';
     aboveBar.innerHTML = `That clears the <strong>$1 trillion</strong> mark.`;
-    context = `A feat no single lifetime of $10M days could normally reach.`;
     peoplePara.innerHTML = '';
   } else {
     const yearsToGo = (BENCHMARK - total) / PER_DAY / 365.25;
@@ -101,11 +100,11 @@ function calculate() {
     aboveBar.innerHTML = `That is about <strong>${fmtPct(pct)}</strong> of $1 trillion, ` +
       `which means that, even at $10 million per day, it will still take you until <strong>${reachDate.getFullYear()}</strong> to become a trillionaire.`;
       const others = Math.round(BENCHMARK / total) - 1;
-    peoplePara.innerHTML = `To already have $1 trillion, it would have taken you and ` +
+    peoplePara.innerHTML = `It would have taken you and ` +
       `<strong>${others.toLocaleString('en-US')} other people</strong> born on ${dob.value} ` +
-      `earning $10 million a day since birth.`;
+      `earning $10 million a day to already have $1 trillion.`;
     context = `Put another way: You would have needed to earn about ` +
-      `<strong>${fmtMoneyShort(perDayNeeded)}</strong> every single day since you were born to be a trillionaire.`;
+      `<strong>${fmtMoneyShort(perDayNeeded)}</strong> every day since birth to be a trillionaire.`;
   }
   document.getElementById('contextPara').innerHTML = context;
 
