@@ -178,6 +178,7 @@ button:hover { background: var(--accent); }
   color: var(--ink);
   text-align: right;
 }
+.bar-remaining.on-fill { color: #fff; }
 .footnote {
   font-family: -apple-system, "PT Sans";
   margin-top: 30px;

@@ -71,6 +71,7 @@ function calculate() {
 
   const days = Math.floor((now - birth) / MS_PER_DAY);
   const years = (days / 365.25);
+  const birthStr = birth.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   const total = days * PER_DAY;
   const pct = (total / BENCHMARK) * 100;
 
@@ -80,7 +81,7 @@ function calculate() {
   document.getElementById('pctVal').textContent = fmtMoneyShort(total);
 
   document.getElementById('leadPara').innerHTML =
-    `In the <strong>${days.toLocaleString('en-US')} days</strong> since you were born, ` +
+    `In the <strong>${days.toLocaleString('en-US')} days</strong> since ${birthStr}, ` +
     `a steady ten million dollars a day would leave you ` +
     `with <strong>${fmtMoney(total)}</strong>.`;
 
@@ -89,21 +90,26 @@ function calculate() {
   const peoplePara = document.getElementById('peoplePara');
   let context;
   if (total >= BENCHMARK) {
-    yearsLabel.textContent = '';
-    aboveBar.innerHTML = `That clears the <strong>$1 trillion</strong> mark.`;
+    const surplus = total - BENCHMARK;
+    const crossDate = new Date(birth.getTime() + (BENCHMARK / PER_DAY) * MS_PER_DAY);
+    yearsLabel.textContent = '$1 trillion cleared';
+    yearsLabel.classList.add('on-fill');
+    aboveBar.innerHTML = `That's <strong>${fmtMoneyShort(surplus)}</strong> more than $1 trillion — you blew past it long ago.`;
     peoplePara.innerHTML = '';
+    context = `At $10 million a day, you would have crossed the $1 trillion line back in <strong>${crossDate.getFullYear()}</strong>.`;
   } else {
     const yearsToGo = (BENCHMARK - total) / PER_DAY / 365.25;
     const perDayNeeded = BENCHMARK / days;
     const reachDate = new Date(birth.getTime() + (BENCHMARK / PER_DAY) * MS_PER_DAY);
+    yearsLabel.classList.remove('on-fill');
     yearsLabel.textContent = `≈ ${Math.round(yearsToGo).toLocaleString('en-US')} more years to go`;
     aboveBar.innerHTML = `That is about <strong>${fmtPct(pct)}</strong> of $1 trillion. ` +
       `Even at $10 million per day, it will take you until <strong>${reachDate.getFullYear()}</strong> to become a trillionaire.`;
       const others = Math.round(BENCHMARK / total) - 1;
-    peoplePara.innerHTML = `It would have taken you and ` +
-      `<strong>${others.toLocaleString('en-US')} other people</strong> born on ${dob.value} ` +
-      `earning $10 million a day to already have $1 trillion.`;
-    context = `Put another way: You would have needed to earn about ` +
+    peoplePara.innerHTML = `In fact, it would have taken you and ` +
+      `<strong>${others.toLocaleString('en-US')} other people</strong> born on your birthday earning ` +
+      `that much to already have $1 trillion.`;
+    context = `In other words, you would need to have earned about ` +
       `<strong>${fmtMoneyShort(perDayNeeded)}</strong> every day since birth to be a trillionaire.`;
   }
   document.getElementById('contextPara').innerHTML = context;
